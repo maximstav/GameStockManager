@@ -45,29 +45,6 @@ public class ClientDAO extends AbstractDAO<Client> {
         return null;
     }
 
-    /**
-     * Deletes a client by id
-     * @param id The client id to delete
-     */
-    public void delete(int id) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-
-        String query = "DELETE FROM client WHERE id = ?";
-
-        try {
-            connection = ConnectionFactory.getConnection();
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "ClientDAO:delete " + e.getMessage());
-        } finally {
-            ConnectionFactory.close(statement);
-            ConnectionFactory.close(connection);
-        }
-    }
-
     @Override
     protected String getTableName() {
         return "client"; // Direct table name since MySQL table names are case-sensitive

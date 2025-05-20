@@ -17,16 +17,24 @@ public class ClientService {
     }
 
     // Note: Role must be either 'admin' or 'client' according to DB schema
-    public void registerClient(Client client) {
+    public Client registerClient(Client client) {
         // maybe check if username exists
-        clientDAO.insert(client);
+        return clientDAO.insert(client);
     }
 
     public List<Client> getAllClients() {
         return clientDAO.findAll();
     }
 
-    public void deleteClient(int id) {
-        clientDAO.delete(id);
+    public boolean deleteClient(int id) {
+        return clientDAO.delete(id);
+    }
+
+    public Client getClientById(int id) {
+        return clientDAO.findById(id);
+    }
+
+    public Client updateClient(Client client) {
+        return clientDAO.update(client);
     }
 }

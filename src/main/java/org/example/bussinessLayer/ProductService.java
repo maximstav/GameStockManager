@@ -12,15 +12,19 @@ public class ProductService {
         return productDAO.findAll();
     }
 
-    public void updateProduct(Product product) {
-        productDAO.update(product);
+    public Product updateProduct(Product product) {
+        return productDAO.update(product);
     }
 
-    public void addProduct(Product product) {
-        productDAO.insert(product);
+    public Product addProduct(Product product) {
+        return productDAO.insert(product);
     }
 
     public Product getProductById(int id) {
         return productDAO.findById(id);
+    }
+
+    public boolean deleteProduct(int id) {
+        return productDAO.delete(id);
     }
 }

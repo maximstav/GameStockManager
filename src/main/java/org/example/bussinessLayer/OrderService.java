@@ -7,6 +7,8 @@ import org.example.model.Bill;
 import org.example.model.Order;
 import org.example.model.Product;
 
+import java.sql.Timestamp;
+
 public class OrderService {
     private final OrderDAO orderDAO = new OrderDAO();
     private final ProductDAO productDAO = new ProductDAO();
@@ -15,10 +17,11 @@ public class OrderService {
     public boolean placeOrder(int clientId, int productId, int quantity) {
         Product product = productDAO.findById(productId);
         if (product.getQuantity() < quantity) {
+            System.out.println("Not enough quantity of " + product.getQuantity() + "(id: " + product.getId() + ")");
             return false;
         }
 
-        Order order = new Order(0, clientId, productId, quantity, null);
+        Order order = new Order(0, clientId, productId, quantity, new Timestamp(System.currentTimeMillis()));
         orderDAO.insert(order);
 
         // Update stock
@@ -26,9 +29,9 @@ public class OrderService {
         productDAO.update(product);
 
         // Create and insert bill
-        String billText = "Client ID: " + clientId + "\nProduct: " + product.getName() +
-                "\nQuantity: " + quantity + "\nTotal: $" + (quantity * product.getPrice());
-        Bill bill = new Bill(0, order.getId(), billText, null);
+        String billText = "Client ID: " + clientId + "\nProduct: " + quantity + "x " + product.getName() +
+                "\nTotal: $" + (quantity * product.getPrice());
+        Bill bill = new Bill(0, order.getId(), billText, order.getTimestamp());
         billDAO.insert(bill);
 
         return true;

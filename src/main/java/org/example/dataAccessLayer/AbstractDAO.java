@@ -77,7 +77,7 @@ public class AbstractDAO<T> {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
 
-            return createObjects(resultSet).get(0);
+            return createObjects(resultSet).getFirst();
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, type.getName() + "DAO:findById " + e.getMessage());
         } finally {
@@ -187,9 +187,9 @@ public class AbstractDAO<T> {
 
             // Construct the SQL INSERT query
             StringBuilder queryBuilder = new StringBuilder();
-            queryBuilder.append("INSERT INTO ");
+            queryBuilder.append("INSERT INTO `");
             queryBuilder.append(getTableName());
-            queryBuilder.append(" (");
+            queryBuilder.append("` (");
             queryBuilder.append(String.join(", ", fieldNames));
             queryBuilder.append(") VALUES (");
 
@@ -211,6 +211,7 @@ public class AbstractDAO<T> {
             }
 
             // Execute the insert statement
+            //System.out.println(statement.toString());         //==================================
             int affectedRows = statement.executeUpdate();
 
             if (affectedRows == 0) {
@@ -300,6 +301,7 @@ public class AbstractDAO<T> {
             // Set the id parameter
             statement.setInt(values.size() + 1, id);
 
+            //System.out.println(statement.toString());         //==========================
             int rowsAffected = statement.executeUpdate();
 
             if (rowsAffected == 0) {
@@ -316,6 +318,44 @@ public class AbstractDAO<T> {
         }
 
         return null;
+    }
+
+    public boolean delete(int id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = ConnectionFactory.getConnection();
+
+            // Construct the SQL DELETE query
+            StringBuilder queryBuilder = new StringBuilder();
+            queryBuilder.append("DELETE FROM ");
+            queryBuilder.append(getTableName());
+            queryBuilder.append(" WHERE id = ?");
+
+            String query = queryBuilder.toString();
+            statement = connection.prepareStatement(query);
+
+            // Set the id parameter
+            statement.setInt(1, id);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected == 0) {
+                System.out.println("No rows affected when deleting " + type.getName() + " with id " + id);
+                LOGGER.log(Level.WARNING, "No rows affected when deleting " + type.getName() + " with id " + id);
+                return false;
+            }
+
+            return true;
+        } catch (SQLException e) {
+            LOGGER.log(Level.WARNING, type.getName() + "DAO:delete " + e.getMessage());
+        } finally {
+            ConnectionFactory.close(statement);
+            ConnectionFactory.close(connection);
+        }
+
+        return false;
     }
 
     protected String getTableName() {

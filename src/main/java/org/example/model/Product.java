@@ -15,13 +15,6 @@ public class Product {
         this.price = price;
     }
 
-    public Product(int id, String name, int quantity, Float price) {
-        this.id = id;
-        this.name = name;
-        this.quantity = quantity;
-        this.price = BigDecimal.valueOf(price);
-    }
-
     public int getId() {
         return id;
     }
