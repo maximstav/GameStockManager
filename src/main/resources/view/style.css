@@ -128,3 +128,22 @@
 .root {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.3, 0, 4);
 }
+
+/* ComboBox dropdown list styling */
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #2e2e3e;
+}
+
+/* Selected item inside ComboBox (main visible item) */
+.combo-box .combo-box-button {
+    -fx-background-color: #2e2e3e;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #2e2e3e;
+}
+
+.combo-box .arrow {
+    -fx-background-color: white;
+}

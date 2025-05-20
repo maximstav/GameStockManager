@@ -39,8 +39,9 @@ public class AbstractDAO<T> {
         ResultSet resultSet = null;
 
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM ");
+        sb.append("SELECT * FROM `");
         sb.append(getTableName());
+        sb.append("`");
 
         String query = sb.toString();
 
