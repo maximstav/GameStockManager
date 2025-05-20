@@ -8,9 +8,9 @@ import java.util.List;
 public class ClientService {
     private final ClientDAO clientDAO = new ClientDAO();
 
-    public Client authenticate(String username, String password) {
+    public Client authenticate(String username, String email) {
         Client client = clientDAO.findByUsername(username);
-        if (client != null && client.getPassword().equals(password)) {
+        if (client != null && client.getEmail().equals(email)) {
             return client;
         }
         return null;

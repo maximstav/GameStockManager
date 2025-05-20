@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
+// to run this app you need to run mvn javafx:run
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {

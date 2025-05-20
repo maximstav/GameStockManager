@@ -12,6 +12,8 @@
             <TextField fx:id="stockField" promptText="Stock"/>
             <TextField fx:id="priceField" promptText="Price"/>
             <Button text="Add" fx:id="addProductButton"/>
+            <Button fx:id="updateProductButton" text="Update Product" />
+            <Button fx:id="deleteProductButton" text="Delete Product" />
         </HBox>
         <TableView fx:id="productTable" prefHeight="300" />
     </VBox>

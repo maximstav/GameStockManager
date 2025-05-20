@@ -43,6 +43,10 @@ public class Product {
         return price.floatValue();
     }
 
+    public BigDecimal getBigDecimalPrice() {
+        return price;
+    }
+
     public void setPrice(BigDecimal price) {
         this.price = price;
     }

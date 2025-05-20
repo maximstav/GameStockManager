@@ -36,5 +36,9 @@ public class OrderService {
 
         return true;
     }
+
+    public boolean deleteOrder(int orderId) {
+        return  orderDAO.delete(orderId);
+    }
 }
 

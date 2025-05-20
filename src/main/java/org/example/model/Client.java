@@ -3,13 +3,13 @@ package org.example.model;
 public class Client {
     private int id;
     private String username;
-    private String password;
+    private String email;
     private String role; // "ADMIN" or "CLIENT"
 
-    public Client(int id, String username, String password, String role) {
+    public Client(int id, String username, String email, String role) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.email = email;
         this.role = role;
     }
 
@@ -29,12 +29,12 @@ public class Client {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRole() {
