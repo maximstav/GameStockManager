@@ -35,4 +35,8 @@ public class Bill {
     public String getBillText() {
         return billText;
     }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
 }
