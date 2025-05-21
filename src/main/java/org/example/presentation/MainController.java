@@ -12,14 +12,16 @@ public class MainController {
     @FXML private Button clientsButton;
     @FXML private Button productsButton;
     @FXML private Button ordersButton;
+    @FXML private Button logButton;
 
     @FXML
     public void initialize() {
-        loadView("view/client_view.fxml");
+        loadView("view/product_view.fxml");
 
         clientsButton.setOnAction(e -> loadView("view/client_view.fxml"));
         productsButton.setOnAction(e -> loadView("view/product_view.fxml"));
         ordersButton.setOnAction(e -> loadView("view/order_view.fxml"));
+        logButton.setOnAction(e -> loadView("view/log_view.fxml"));
     }
 
     private void loadView(String fxmlPath) {

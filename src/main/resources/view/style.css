@@ -147,3 +147,88 @@
 .combo-box .arrow {
     -fx-background-color: white;
 }
+
+/* TableView Styling */
+.table-view {
+    -fx-background-color: #2e2e3e; /* Slightly lighter dark background */
+    -fx-border-color: #6c63ff;     /* Accent border color */
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(one-pass-box, rgba(108,99,255,0.2), 6, 0.2, 0, 3);
+}
+
+/* Column header background and text */
+.table-view .column-header-background {
+    -fx-background-color: #3e3e50;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-padding: 4 0 4 0;
+    -fx-border-color: transparent;
+}
+
+/* Header cell style */
+.table-view .column-header, .table-view .filler {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d0d0ff;
+    -fx-alignment: center-left;
+    -fx-padding: 8 12 8 12;
+    -fx-border-color: transparent;
+}
+
+/* Table rows */
+.table-view .table-row-cell {
+    -fx-padding: 6 10 6 10;
+    -fx-background-color: transparent;
+    -fx-font-size: 13px;
+}
+
+/* Alternating row colors */
+.table-view .table-row-cell:odd {
+    -fx-background-color: rgba(46, 46, 62, 0.85);
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: rgba(62, 62, 80, 0.85);
+}
+
+/* Hover effect on rows */
+.table-view .table-row-cell:hover {
+    -fx-background-color: rgba(108, 99, 255, 0.2);
+}
+
+/* Selected row style */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #6c63ff;
+    -fx-text-fill: white;
+}
+
+/* Table cells */
+.table-view .table-cell {
+    -fx-text-fill: #ddd;
+    -fx-padding: 6 10 6 10;
+    -fx-alignment: center-left;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.flow-pane {
+    -fx-background-color: #1e1e2f;
+}
+
+.product-card {
+    -fx-background-color: #2e2e3e;
+    -fx-border-color: #39ff14;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px; /* mai mult spațiu interior */
+    -fx-effect: dropshadow(gaussian, #39ff14, 10, 0.5, 0, 0);
+}
+
+

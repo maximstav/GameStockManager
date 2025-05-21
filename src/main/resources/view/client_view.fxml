@@ -11,6 +11,8 @@
             <TextField fx:id="nameField" promptText="Client Name"/>
             <TextField fx:id="emailField" promptText="Email"/>
             <Button text="Add" fx:id="addClientButton"/>
+            <Button text="Update" fx:id="updateClientButton"/>
+            <Button text="Delete" fx:id="deleteClientButton"/>
         </HBox>
         <TableView fx:id="clientTable" prefHeight="300" />
     </VBox>

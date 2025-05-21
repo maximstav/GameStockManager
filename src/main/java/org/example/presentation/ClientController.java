@@ -19,6 +19,13 @@ public class ClientController {
     private Button addClientButton;
 
     @FXML
+    private Button updateClientButton;
+
+    @FXML
+    private Button deleteClientButton;
+
+
+    @FXML
     private TableView<Client> clientTable;
 
     private final ClientService clientService = new ClientService();
@@ -29,7 +36,18 @@ public class ClientController {
         loadClients();
 
         addClientButton.setOnAction(event -> handleAddClient());
+        updateClientButton.setOnAction(event -> handleUpdateClient());
+        deleteClientButton.setOnAction(event -> handleDeleteClient());
+
+        clientTable.setOnMouseClicked(event -> {
+            Client selectedClient = clientTable.getSelectionModel().getSelectedItem();
+            if (selectedClient != null) {
+                nameField.setText(selectedClient.getUsername());
+                emailField.setText(selectedClient.getEmail());
+            }
+        });
     }
+
 
     private void setupTable() {
         TableColumn<Client, Integer> idCol = new TableColumn<>("ID");
@@ -68,6 +86,43 @@ public class ClientController {
         nameField.clear();
         emailField.clear();
     }
+
+    private void handleUpdateClient() {
+        Client selectedClient = clientTable.getSelectionModel().getSelectedItem();
+        if (selectedClient == null) {
+            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a client to update.");
+            return;
+        }
+
+        String updatedName = nameField.getText().trim();
+        String updatedEmail = emailField.getText().trim();
+
+        if (updatedName.isEmpty() || updatedEmail.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and Email cannot be empty.");
+            return;
+        }
+
+        selectedClient.setUsername(updatedName);
+        selectedClient.setEmail(updatedEmail);
+        clientService.updateClient(selectedClient);
+        loadClients();
+        nameField.clear();
+        emailField.clear();
+    }
+
+    private void handleDeleteClient() {
+        Client selectedClient = clientTable.getSelectionModel().getSelectedItem();
+        if (selectedClient == null) {
+            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a client to delete.");
+            return;
+        }
+
+        clientService.deleteClient(selectedClient.getId());
+        loadClients();
+        nameField.clear();
+        emailField.clear();
+    }
+
 
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);

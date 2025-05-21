@@ -15,6 +15,7 @@
             <Button fx:id="clientsButton" text="Clients" styleClass="sidebar-button"/>
             <Button fx:id="productsButton" text="Products" styleClass="sidebar-button"/>
             <Button fx:id="ordersButton" text="Orders" styleClass="sidebar-button"/>
+            <Button fx:id="logButton" text="Logs" styleClass="sidebar-button"/>
         </VBox>
     </left>
 

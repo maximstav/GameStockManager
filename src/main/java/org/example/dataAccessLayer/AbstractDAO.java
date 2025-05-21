@@ -330,9 +330,9 @@ public class AbstractDAO<T> {
 
             // Construct the SQL DELETE query
             StringBuilder queryBuilder = new StringBuilder();
-            queryBuilder.append("DELETE FROM ");
+            queryBuilder.append("DELETE FROM `");
             queryBuilder.append(getTableName());
-            queryBuilder.append(" WHERE id = ?");
+            queryBuilder.append("` WHERE id = ?");
 
             String query = queryBuilder.toString();
             statement = connection.prepareStatement(query);

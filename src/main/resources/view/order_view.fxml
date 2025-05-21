@@ -24,7 +24,7 @@
                 <TableColumn fx:id="clientIdCol" text="Client ID" prefWidth="80"/>
                 <TableColumn fx:id="clientNameCol" text="Client Name" prefWidth="120"/>
                 <TableColumn fx:id="productIdCol" text="Product ID" prefWidth="80"/>
-                <TableColumn fx:id="productNameCol" text="Product Name" prefWidth="120"/>
+                <TableColumn fx:id="productNameCol" text="Product Name" prefWidth="150"/>
                 <TableColumn fx:id="quantityCol" text="Quantity" prefWidth="80"/>
                 <TableColumn fx:id="priceCol" text="Price" prefWidth="100"/>
             </columns>
