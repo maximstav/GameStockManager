@@ -1,0 +1,6 @@
+org.example
+org.example.bussinessLayer
+org.example.connection
+org.example.dataAccessLayer
+org.example.model
+org.example.presentation

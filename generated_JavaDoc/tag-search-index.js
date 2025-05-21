@@ -1,0 +1,1 @@
+tagSearchIndex = [{"l":"Warehouse Orders Management System","h":"class org.example.Main","d":"Section","u":"org/example/Main.html#warehouse-orders-management-system-heading"}];updateSearchResults();

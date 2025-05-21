@@ -5,14 +5,20 @@ import org.example.model.Client;
 import java.sql.*;
 import java.util.logging.*;
 
+/**
+ * ClientDAO is a DAO class for managing Client entities.
+ * It extends AbstractDAO and adds specific methods for client operations.
+ */
 public class ClientDAO extends AbstractDAO<Client> {
     private static final Logger LOGGER = Logger.getLogger(ClientDAO.class.getName());
 
     /**
-     * Finds a client by username
-     * @param username The username to search for
-     * @return The Client if found, null otherwise
+     * Finds a client by their username.
+     *
+     * @param username the username to search for
+     * @return the Client object if found, or null if not found
      */
+
     public Client findByUsername(String username) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -45,6 +51,11 @@ public class ClientDAO extends AbstractDAO<Client> {
         return null;
     }
 
+    /**
+     * Returns the name of the client table.
+     *
+     * @return "client"
+     */
     @Override
     protected String getTableName() {
         return "client"; // Direct table name since MySQL table names are case-sensitive

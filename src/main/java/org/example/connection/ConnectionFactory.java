@@ -8,6 +8,10 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Singleton class for managing database connections to the MySQL server.
+ * Provides utility methods to obtain and close database resources.
+ */
 public class ConnectionFactory {
 
     private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
@@ -18,6 +22,9 @@ public class ConnectionFactory {
 
     private static ConnectionFactory singleInstance = new ConnectionFactory();
 
+    /**
+     * Private constructor that loads the JDBC driver.
+     */
     private ConnectionFactory() {
         try {
             Class.forName(DRIVER);
@@ -26,6 +33,11 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     * Creates a new connection to the database.
+     *
+     * @return a {@link Connection} object, or null if the connection fails.
+     */
     private Connection createConnection() {
         Connection connection = null;
         try {
@@ -37,10 +49,20 @@ public class ConnectionFactory {
         return connection;
     }
 
+    /**
+     * Returns a new {@link Connection} object using the singleton instance.
+     *
+     * @return a new {@link Connection} to the database.
+     */
     public static Connection getConnection() {
         return singleInstance.createConnection();
     }
 
+    /**
+     * Closes the given {@link Connection}, if not null.
+     *
+     * @param connection the {@link Connection} to close
+     */
     public static void close(Connection connection) {
         if (connection != null) {
             try {
@@ -51,6 +73,11 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     * Closes the given {@link Statement}, if not null.
+     *
+     * @param statement the {@link Statement} to close
+     */
     public static void close(Statement statement) {
         if (statement != null) {
             try {
@@ -61,6 +88,11 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     * Closes the given {@link ResultSet}, if not null.
+     *
+     * @param resultSet the {@link ResultSet} to close
+     */
     public static void close(ResultSet resultSet) {
         if (resultSet != null) {
             try {

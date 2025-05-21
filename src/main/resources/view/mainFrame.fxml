@@ -11,7 +11,7 @@
 
     <!-- Sidebar -->
     <left>
-        <VBox spacing="10" styleClass="sidebar">
+        <VBox spacing="15" styleClass="sidebar" alignment="CENTER">
             <Button fx:id="clientsButton" text="Clients" styleClass="sidebar-button"/>
             <Button fx:id="productsButton" text="Products" styleClass="sidebar-button"/>
             <Button fx:id="ordersButton" text="Orders" styleClass="sidebar-button"/>
@@ -21,6 +21,6 @@
 
     <!-- Content Area -->
     <center>
-        <StackPane fx:id="contentArea"/>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
     </center>
 </BorderPane>

@@ -12,17 +12,32 @@ import java.util.logging.Logger;
 
 import org.example.connection.ConnectionFactory;
 
+/**
+ * AbstractDAO is a generic class that provides basic CRUD operations for any model class.
+ * It uses Java Reflection to dynamically generate SQL queries and map results to Java objects.
+ *
+ * @param <T> the type of the model class
+ */
 public class AbstractDAO<T> {
     protected static final Logger LOGGER = Logger.getLogger(AbstractDAO.class.getName());
 
     private final Class<T> type;
 
+    /**
+     * Constructs a new AbstractDAO and retrieves the generic type at runtime.
+     */
     @SuppressWarnings("unchecked")
     public AbstractDAO() {
         this.type = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
     }
 
+    /**
+     * Creates a SELECT SQL query based on the specified field.
+     *
+     * @param field the field name to be used in the WHERE clause
+     * @return a SELECT query string
+     */
     private String createSelectQuery(String field) {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT ");
@@ -33,6 +48,11 @@ public class AbstractDAO<T> {
         return sb.toString();
     }
 
+    /**
+     * Retrieves all records of type T from the associated database table.
+     *
+     * @return a list of all records, or an empty list if none found
+     */
     public List<T> findAll() {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -67,6 +87,12 @@ public class AbstractDAO<T> {
         return new ArrayList<>(); // Return empty list instead of null
     }
 
+    /**
+     * Finds a record by its ID.
+     *
+     * @param id the ID of the record
+     * @return the corresponding object, or null if not found
+     */
     public T findById(int id) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -89,6 +115,12 @@ public class AbstractDAO<T> {
         return null;
     }
 
+    /**
+     * Creates a list of objects of type T from a ResultSet using constructor matching.
+     *
+     * @param resultSet the ResultSet from a SQL query
+     * @return a list of objects
+     */
     private List<T> createObjects(ResultSet resultSet) {
         List<T> list = new ArrayList<>();
 
@@ -162,6 +194,12 @@ public class AbstractDAO<T> {
         return list;
     }
 */
+    /**
+     * Inserts an object into the database.
+     *
+     * @param t the object to insert
+     * @return the inserted object with its ID populated, or null if insertion failed
+     */
     public T insert(T t) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -246,6 +284,12 @@ public class AbstractDAO<T> {
         return null;
     }
 
+    /**
+     * Updates an existing record in the database.
+     *
+     * @param t the object containing updated values
+     * @return the updated object, or null if update failed
+     */
     public T update(T t) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -321,6 +365,12 @@ public class AbstractDAO<T> {
         return null;
     }
 
+    /**
+     * Deletes a record from the database based on its ID.
+     *
+     * @param id the ID of the record to delete
+     * @return true if deletion was successful, false otherwise
+     */
     public boolean delete(int id) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -359,6 +409,11 @@ public class AbstractDAO<T> {
         return false;
     }
 
+    /**
+     * Gets the table name corresponding to the model class.
+     *
+     * @return the table name as a string
+     */
     protected String getTableName() {
         return type.getSimpleName(); // default behavior
     }

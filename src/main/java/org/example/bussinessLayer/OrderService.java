@@ -14,6 +14,14 @@ public class OrderService {
     private final ProductDAO productDAO = new ProductDAO();
     private final BillDAO billDAO = new BillDAO(); // handles Bills - Logs in the DB
 
+    /**
+     * Places an order, updates product stock, and creates a bill.
+     *
+     * @param clientId the ID of the client placing the order
+     * @param productId the ID of the product to order
+     * @param quantity the number of units ordered
+     * @return true if the order was placed successfully, false otherwise
+     */
     public boolean placeOrder(int clientId, int productId, int quantity) {
         Product product = productDAO.findById(productId);
         if (product.getQuantity() < quantity) {
@@ -37,6 +45,12 @@ public class OrderService {
         return true;
     }
 
+    /**
+     * Deletes an order by ID.
+     *
+     * @param orderId the ID of the order to delete
+     * @return true if the deletion was successful, false otherwise
+     */
     public boolean deleteOrder(int orderId) {
         return  orderDAO.delete(orderId);
     }

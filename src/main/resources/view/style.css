@@ -103,25 +103,39 @@
     -fx-font-weight: bold;
 }
 
-/* Sidebar Navigation (if used) */
 .sidebar {
     -fx-background-color: #2e2e3e;
-    -fx-padding: 10;
-    -fx-spacing: 8;
+    -fx-padding: 20 10 20 10;
+    -fx-spacing: 12;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0.3, 0, 2);
 }
 
+/* Sidebar Buttons */
 .sidebar-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: #aaaaaa;
+    -fx-background-color: #3b3b50;
+    -fx-text-fill: #cfcfff;
     -fx-alignment: center-left;
-    -fx-padding: 10;
-    -fx-background-radius: 5px;
+    -fx-padding: 10 16 10 16;
+    -fx-background-radius: 8px;
     -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-pref-width: 110px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.2), 3, 0.2, 0, 1);
+    -fx-transition: all 0.3s ease;
 }
 
 .sidebar-button:hover {
-    -fx-background-color: #3e3e50;
-    -fx-text-fill: #ffffff;
+    -fx-background-color: #6c63ff;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(one-pass-box, rgba(108,99,255,0.5), 6, 0.3, 0, 3);
+}
+
+.sidebar-button:focused {
+    -fx-border-color: #7d75ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 8px;
 }
 
 /* Transitions and Effects */

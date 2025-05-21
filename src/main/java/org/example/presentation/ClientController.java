@@ -7,6 +7,10 @@ import javafx.scene.control.*;
 import org.example.bussinessLayer.ClientService;
 import org.example.model.Client;
 
+/**
+ * JavaFX controller for managing clients.
+ * Handles adding, updating, and deleting clients via the GUI.
+ */
 public class ClientController {
 
     @FXML
@@ -30,6 +34,10 @@ public class ClientController {
 
     private final ClientService clientService = new ClientService();
 
+    /**
+     * Initializes the controller after the FXML elements are loaded.
+     * Sets up table columns and loads all clients from the database.
+     */
     @FXML
     public void initialize() {
         setupTable();
@@ -48,7 +56,9 @@ public class ClientController {
         });
     }
 
-
+    /**
+     * Configures the columns of the client table view.
+     */
     private void setupTable() {
         TableColumn<Client, Integer> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -65,11 +75,17 @@ public class ClientController {
         clientTable.getColumns().setAll(idCol, nameCol, emailCol, roleCol);
     }
 
+    /**
+     * Loads all clients from the database and displays them in the table.
+     */
     private void loadClients() {
         ObservableList<Client> clients = FXCollections.observableArrayList(clientService.getAllClients());
         clientTable.setItems(clients);
     }
 
+    /**
+     * Handles adding a new client using input from the text fields.
+     */
     private void handleAddClient() {
         String name = nameField.getText().trim();
         String email = emailField.getText().trim();
@@ -124,6 +140,13 @@ public class ClientController {
     }
 
 
+    /**
+     * Utility method to display alerts.
+     *
+     * @param type    the type of alert
+     * @param title   the alert title
+     * @param message the alert message
+     */
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
