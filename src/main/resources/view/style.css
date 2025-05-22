@@ -237,12 +237,12 @@
 
 .product-card {
     -fx-background-color: #2e2e3e;
-    -fx-border-color: #39ff14;
+    -fx-border-color: #fafafa;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-padding: 12px; /* mai mult spațiu interior */
-    -fx-effect: dropshadow(gaussian, #39ff14, 10, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, #092def, 10, 0.5, 0, 0);
 }
 
 
