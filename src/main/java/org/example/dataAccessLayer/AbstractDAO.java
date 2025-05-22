@@ -10,6 +10,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
+
 import org.example.connection.ConnectionFactory;
 
 /**
@@ -416,6 +421,31 @@ public class AbstractDAO<T> {
      */
     protected String getTableName() {
         return type.getSimpleName(); // default behavior
+    }
+
+    /**
+     * Uses reflection to extract the field names of the generic type T.
+     * These can be used as headers for a table (e.g., in a JavaFX TableView).
+     *
+     * @return a list of field names of the T class
+     */
+
+    public TableView<T> getTableView() {
+        TableView<T> tableView = new TableView<>();
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        for (Field field : type.getDeclaredFields()) {
+            field.setAccessible(true);
+            String fieldName = field.getName();
+            TableColumn<T, Object> column = new TableColumn<>(fieldName);
+            column.setCellValueFactory(new PropertyValueFactory<>(fieldName));
+            tableView.getColumns().add(column);
+        }
+
+        // Load data into the TableView
+        tableView.getItems().addAll(findAll());
+
+        return tableView;
     }
 }
 

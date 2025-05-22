@@ -6,13 +6,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.presentation.LogController"
             prefWidth="800" prefHeight="600" style="-fx-background-color: #1e1e2f;">
 
-    <TableView fx:id="logTable" layoutX="25" layoutY="25" prefWidth="625" prefHeight="550" fixedCellSize="80.0">
-        <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="70"/>
-            <TableColumn fx:id="billTextColumn" text="Bill Text" prefWidth="250"/>
-            <TableColumn fx:id="createdAtColumn" text="Created At" prefWidth="200"/>
-        </columns>
-    </TableView>
+    <TableView fx:id="logTable" layoutX="25" layoutY="25" prefWidth="750" prefHeight="550" fixedCellSize="80.0"/>
+
 </AnchorPane>
 

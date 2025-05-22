@@ -33,6 +33,8 @@ public class ClientController {
     private TableView<Client> clientTable;
 
     private final ClientService clientService = new ClientService();
+    private final org.example.dataAccessLayer.ClientDAO clientDAO = new org.example.dataAccessLayer.ClientDAO();
+
 
     /**
      * Initializes the controller after the FXML elements are loaded.
@@ -40,8 +42,10 @@ public class ClientController {
      */
     @FXML
     public void initialize() {
-        setupTable();
-        loadClients();
+        // Use the generic DAO's TableView setup
+        TableView<Client> tableView = clientDAO.getTableView();
+        clientTable.getColumns().setAll(tableView.getColumns());
+        clientTable.setItems(tableView.getItems());
 
         addClientButton.setOnAction(event -> handleAddClient());
         updateClientButton.setOnAction(event -> handleUpdateClient());
@@ -56,32 +60,11 @@ public class ClientController {
         });
     }
 
-    /**
-     * Configures the columns of the client table view.
-     */
-    private void setupTable() {
-        TableColumn<Client, Integer> idCol = new TableColumn<>("ID");
-        idCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-
-        TableColumn<Client, String> nameCol = new TableColumn<>("Username");
-        nameCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getUsername()));
-
-        TableColumn<Client, String> emailCol = new TableColumn<>("Email");
-        emailCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));
-
-        TableColumn<Client, String> roleCol = new TableColumn<>("Role");
-        roleCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getRole()));
-
-        clientTable.getColumns().setAll(idCol, nameCol, emailCol, roleCol);
+    private void refreshTable() {
+        TableView<Client> tableView = clientDAO.getTableView();
+        clientTable.setItems(tableView.getItems());
     }
 
-    /**
-     * Loads all clients from the database and displays them in the table.
-     */
-    private void loadClients() {
-        ObservableList<Client> clients = FXCollections.observableArrayList(clientService.getAllClients());
-        clientTable.setItems(clients);
-    }
 
     /**
      * Handles adding a new client using input from the text fields.
@@ -98,7 +81,7 @@ public class ClientController {
         Client newClient = new Client(0, name, email, "CLIENT");
 
         clientService.registerClient(newClient);
-        loadClients();
+        refreshTable();
         nameField.clear();
         emailField.clear();
     }
@@ -121,7 +104,7 @@ public class ClientController {
         selectedClient.setUsername(updatedName);
         selectedClient.setEmail(updatedEmail);
         clientService.updateClient(selectedClient);
-        loadClients();
+        refreshTable();
         nameField.clear();
         emailField.clear();
     }
@@ -134,7 +117,7 @@ public class ClientController {
         }
 
         clientService.deleteClient(selectedClient.getId());
-        loadClients();
+        refreshTable();
         nameField.clear();
         emailField.clear();
     }
