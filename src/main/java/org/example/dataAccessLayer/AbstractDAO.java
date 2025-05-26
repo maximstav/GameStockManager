@@ -423,13 +423,7 @@ public class AbstractDAO<T> {
         return type.getSimpleName(); // default behavior
     }
 
-    /**
-     * Uses reflection to extract the field names of the generic type T.
-     * These can be used as headers for a table (e.g., in a JavaFX TableView).
-     *
-     * @return a list of field names of the T class
-     */
-
+    // Am folosit reflexion ca sa generez tabele, inclusiv headerele lor si populeaza cu datele respective
     public TableView<T> getTableView() {
         TableView<T> tableView = new TableView<>();
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -442,7 +436,6 @@ public class AbstractDAO<T> {
             tableView.getColumns().add(column);
         }
 
-        // Load data into the TableView
         tableView.getItems().addAll(findAll());
 
         return tableView;

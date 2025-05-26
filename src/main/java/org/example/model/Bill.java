@@ -16,33 +16,18 @@ import java.sql.Timestamp;
  * @version 1.0
  */
 // immutable class, corresponds to the Log DB table
-public class Bill {
-    private int id;  // modificabil
-    private final int orderId;
-    private final String billText;
-    private final Timestamp createdAt;
+import java.sql.Timestamp;
 
-    /**
-     * Constructs a new Bill instance with the specified properties.
-     *
-     * @param id the bill's unique identifier
-     * @param orderId the ID of the related order
-     * @param billText the textual representation of the bill
-     * @param createdAt the creation timestamp of the bill
-     */
-    public Bill(int id, int orderId, String billText, Timestamp createdAt) {
-        this.id = id;
-        this.orderId = orderId;
-        this.billText = billText;
-        this.createdAt = createdAt;
+import java.sql.Timestamp;
+
+public record Bill(int id, int orderId, String billText, Timestamp createdAt) {
+
+    public Bill {
+        createdAt = new Timestamp(createdAt.getTime());
     }
 
-    public Timestamp createdAt() {
+    public Timestamp getCreatedAt() {
         return new Timestamp(createdAt.getTime());
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {
@@ -56,8 +41,51 @@ public class Bill {
     public String getBillText() {
         return billText;
     }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
 }
+
+
+//public class Bill {
+//    private int id;  // modificabil
+//    private final int orderId;
+//    private final String billText;
+//    private final Timestamp createdAt;
+//
+//    /**
+//     * Constructs a new Bill instance with the specified properties.
+//     *
+//     * @param id the bill's unique identifier
+//     * @param orderId the ID of the related order
+//     * @param billText the textual representation of the bill
+//     * @param createdAt the creation timestamp of the bill
+//     */
+//    public Bill(int id, int orderId, String billText, Timestamp createdAt) {
+//        this.id = id;
+//        this.orderId = orderId;
+//        this.billText = billText;
+//        this.createdAt = createdAt;
+//    }
+//
+//    public Timestamp createdAt() {
+//        return new Timestamp(createdAt.getTime());
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public int getOrderId() {
+//        return orderId;
+//    }
+//
+//    public String getBillText() {
+//        return billText;
+//    }
+//
+//    public Timestamp getCreatedAt() {
+//        return createdAt;
+//    }
+//}
